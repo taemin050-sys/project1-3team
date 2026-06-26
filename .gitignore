@@ -2,3 +2,16 @@
 .python-version
 pyproject.toml
 .DS_Store/
+
+# 데이터와 모델 파일
+data/
+*.csv
+models/
+*.pt
+
+# 가상 환경과 캐시
+myenv/
+__pycache__/
+
+# 노트북 체크포인트
+.ipynb_checkpoints/
