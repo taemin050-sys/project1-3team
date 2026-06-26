@@ -2,6 +2,7 @@
 .python-version
 pyproject.toml
 .DS_Store/
+uv.lock
 
 # 데이터와 모델 파일
 data/
