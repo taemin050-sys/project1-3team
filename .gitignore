@@ -21,6 +21,11 @@ uv.lock
 .ipynb_checkpoints/
 
 
+runs/
+
 # 최중열 개인 제외
 notebooks/joelchoi/experiments/
-runs/*
+notebooks/joelchoi/runs/
+src/joelchoi/
+configs/joelchoi/
+experiments/joelchoi/
