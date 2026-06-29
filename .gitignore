@@ -1,8 +1,6 @@
-.venv/
-.python-version
-pyproject.toml
+
+# macOS
 .DS_Store/
-uv.lock
 
 # 데이터와 모델 파일
 data/
@@ -14,5 +12,15 @@ models/
 myenv/
 __pycache__/
 
+## uv로 생성한 디렉토리
+.venv/
+.python-version
+uv.lock
+
 # 노트북 체크포인트
 .ipynb_checkpoints/
+
+
+# 최중열 개인 제외
+notebooks/joelchoi/experiments/
+runs/*
