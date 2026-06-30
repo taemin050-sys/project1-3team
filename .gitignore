@@ -3,9 +3,9 @@
 .DS_Store/
 
 # 데이터와 모델 파일
-data/
+/data/
 *.csv
-models/
+/models/
 *.pt
 
 # 가상 환경과 캐시
@@ -20,7 +20,26 @@ uv.lock
 # 노트북 체크포인트
 .ipynb_checkpoints/
 
+# 실행 결과
+runs/
 
-# 최중열 개인 제외
+.claude/
+pyproject.toml
+
+# 개인 제외 - 최중열
 notebooks/joelchoi/experiments/
-runs/*
+notebooks/joelchoi/runs/
+notebooks/joelchoi/run_experiment.ipynb
+*.pptx
+*.jpg
+*.png
+
+# 임시
+exp002*/
+exp003*/
+exp002*.*
+exp003*.*
+exp004*.*
+exp005*.*
+*0629*/
+draft_*.ipynb
