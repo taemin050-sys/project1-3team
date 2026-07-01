@@ -28,8 +28,18 @@ def coco_to_yolo(
     output_dir = Path(output_dir)
     image_dir = output_dir / "images" / split
     label_dir = output_dir / "labels" / split
+
+    # 이전 실행의 잔여 파일 제거(섞이면 train/val 누수가 재유입될 수 있음).
+    # ultralytics 라벨 캐시(*.cache)도 제거해 stale 캐시를 막는다.
+    import shutil
+    for d in (image_dir, label_dir):
+        if d.exists():
+            shutil.rmtree(d)
     image_dir.mkdir(parents=True, exist_ok=True)
     label_dir.mkdir(parents=True, exist_ok=True)
+    cache = output_dir / "labels" / f"{split}.cache"
+    if cache.exists():
+        cache.unlink()
 
     img_id_to_info = {img["id"]: img for img in coco["images"]}
 

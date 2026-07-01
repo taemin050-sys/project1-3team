@@ -1,11 +1,23 @@
 """AI Hub 경구약제 조합 데이터 → COCO 통합 포맷 변환."""
 
 import json
+import re
 from collections import defaultdict
 from pathlib import Path
 
 
 EXCLUDED_COMBOS = {2}
+
+
+def parse_kcode(drug_code: str) -> int | None:
+    """약 폴더명(K-001900 등) → 정수 category_id(1900).
+
+    Kaggle 채점은 K-코드 숫자를 category_id로 사용한다. AIHub 약 폴더명도
+    동일한 K-코드이므로 이를 파싱해 Kaggle과 category_id 체계를 통일한다.
+    파싱 불가 시 None.
+    """
+    m = re.search(r"(\d{3,6})", str(drug_code))
+    return int(m.group(1)) if m else None
 
 
 def find_aihub_root(base_path: str | Path | None = None) -> Path:
@@ -81,10 +93,12 @@ def convert_combo(
                 continue
             drug_code = drug_dir.name
 
-            if drug_code not in category_map:
-                category_map[drug_code] = len(category_map) + 1
-
-            cat_id = category_map[drug_code]
+            # category_id를 K-코드 숫자로 통일(Kaggle 채점 체계와 동일).
+            cat_id = parse_kcode(drug_code)
+            if cat_id is None:
+                print(f"경고: 약 코드 파싱 실패 → 건너뜀: {drug_code}")
+                continue
+            category_map[drug_code] = cat_id
 
             for json_file in sorted(drug_dir.glob("*.json")):
                 data = None

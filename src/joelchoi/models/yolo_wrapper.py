@@ -1,7 +1,7 @@
 """ultralytics YOLO를 실험 config로 실행하는 래퍼."""
 
 from pathlib import Path
-
+from src.joelchoi.utils import get_device
 from ultralytics import YOLO
 
 
@@ -46,6 +46,7 @@ def train_yolo(
         "project": str(project_dir),
         "name": exp_name,
         "exist_ok": True,
+        "device": get_device(),
     }
 
     if "optimizer" in train_cfg:

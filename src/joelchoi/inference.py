@@ -21,6 +21,46 @@ def load_class_map(class_map_path: str | Path) -> dict[int, int]:
     return {int(k): v["category_id"] for k, v in raw.items()}
 
 
+def restrict_class_map(
+    class_map_path: str | Path,
+    allowed_ids,
+    output_path: str | Path | None = None,
+) -> Path:
+    """제출 대상 category_id만 남기고 나머지는 -1로 표시.
+
+    증강 학습 시 모델은 56개 외 클래스(AIHub 전용 약)도 함께 배운다. 추론은
+    category_id == -1 예측을 자동으로 버리므로, 제출 전 class_map에서 56개
+    이외 클래스를 -1로 바꿔 두면 제출에 무관한 클래스가 섞이지 않는다.
+
+    Args:
+        class_map_path: 원본 class_map.json (모든 클래스, K-코드 id)
+        allowed_ids: 제출 허용 category_id 집합(예: Kaggle 56)
+        output_path: 저장 경로(None이면 ``*_submit.json``)
+
+    Returns:
+        저장된 class_map 경로
+    """
+    allowed = set(int(x) for x in allowed_ids)
+    class_map_path = Path(class_map_path)
+    with open(class_map_path, encoding="utf-8") as f:
+        cm = json.load(f)
+
+    kept = 0
+    for info in cm.values():
+        if info["category_id"] in allowed:
+            kept += 1
+        else:
+            info["category_id"] = -1
+
+    if output_path is None:
+        output_path = class_map_path.with_name(class_map_path.stem + "_submit.json")
+    output_path = Path(output_path)
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(cm, f, ensure_ascii=False, indent=2)
+    print(f"제출용 class_map: {kept}/{len(cm)}개 클래스 유지(나머지 -1) → {output_path}")
+    return output_path
+
+
 def build_class_map_from_yaml(
     yaml_path: str | Path,
     kaggle_ann_root: str | Path | None = None,
@@ -53,6 +93,7 @@ def build_class_map_from_yaml(
         )
     kaggle_ann_root = Path(kaggle_ann_root)
 
+    # 폴더명 K-XXXXXX의 숫자 부분이 category_id (K-001900 → 1900)
     kaggle_name_to_id: dict[str, int] = {}
     for f in kaggle_ann_root.rglob("*.json"):
         try:
@@ -134,8 +175,9 @@ def run_inference(
             x1, y1, x2, y2 = box.xyxy[0].tolist()
             bbox = [x1, y1, x2 - x1, y2 - y1]
 
-            cat_id = yolo_to_cat.get(cls_idx, cls_idx)
-
+            cat_id = yolo_to_cat.get(cls_idx, -1)
+            if cat_id == -1:
+                continue
             predictions.append({
                 "image_id": image_id,
                 "category_id": cat_id,
@@ -143,7 +185,9 @@ def run_inference(
                 "score": round(score, 6),
             })
 
-    print(f"총 예측 수: {len(predictions)}개 (이미지당 평균 {len(predictions)/len(test_images):.1f}개)")
+    print(
+        f"총 예측 수: {len(predictions)}개 (이미지당 평균 {len(predictions) / len(test_images):.1f}개)"
+    )
     return predictions
 
 
@@ -162,18 +206,27 @@ def save_submission(
 
     with open(output_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
-        writer.writerow(
-            ["annotation_id", "image_id", "category_id",
-             "bbox_x", "bbox_y", "bbox_w", "bbox_h", "score"]
-        )
+        writer.writerow([
+            "annotation_id",
+            "image_id",
+            "category_id",
+            "bbox_x",
+            "bbox_y",
+            "bbox_w",
+            "bbox_h",
+            "score",
+        ])
         for ann_id, pred in enumerate(predictions, start=1):
             x, y, w, h = pred["bbox"]
             writer.writerow([
                 ann_id,
                 pred["image_id"],
                 pred["category_id"],
-                round(x, 2), round(y, 2), round(w, 2), round(h, 2),
-                round(pred["score"], 6),
+                int(x),
+                int(y),
+                int(w),
+                int(h),
+                float(int(pred["score"] * 100) / 100),
             ])
 
     print(f"제출 파일 저장: {output_path} ({len(predictions)}개 예측)")
