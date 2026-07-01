@@ -1,0 +1,21 @@
+experiment:
+  name: exp010_yolo11n_kaggle
+  seed: 42
+
+data:
+  source: kaggle        # Kaggle 제공 train 데이터(조합2 제외) 사용 → 테스트와 동일 분포
+  subset: full          # 누수 없는 그룹 분할 + 전체 데이터
+  test_size: 0.2
+  img_size: 640
+
+model:
+  type: yolo
+  name: yolo11n
+  pretrained: true
+
+training:
+  epochs: 60            # 데이터가 충분하므로 epoch 확보(과적합 시 patience로 조기종료)
+  batch_size: 16
+  optimizer: SGD
+  lr: 0.01
+  weight_decay: 0.0005

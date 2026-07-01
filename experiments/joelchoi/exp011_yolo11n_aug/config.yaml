@@ -1,0 +1,18 @@
+data:
+  img_size: 640
+  source: kaggle+aihub
+  subset: full
+  test_size: 0.2
+experiment:
+  name: exp011_yolo11n_aug
+  seed: 42
+model:
+  name: yolo11n
+  pretrained: true
+  type: yolo
+training:
+  batch_size: 16
+  epochs: 60
+  lr: 0.01
+  optimizer: SGD
+  weight_decay: 0.0005
