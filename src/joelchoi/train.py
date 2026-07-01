@@ -10,6 +10,7 @@ from torch.utils.data import DataLoader
 
 from src.joelchoi.data.dataset import (
     PillDetectionDataset,
+    build_cat2label,
     collate_fn,
     get_train_augment,
     get_val_augment,
@@ -17,6 +18,14 @@ from src.joelchoi.data.dataset import (
 from src.joelchoi.evaluate import evaluate_coco
 from src.joelchoi.models.builder import build_model
 from src.joelchoi.utils import get_device, save_config, set_seed
+
+# 모델 계열별 detection head 파라미터 이름 키워드
+# (Faster R-CNN: roi_heads.box_predictor / SSD·RetinaNet·FCOS: head.*_head)
+_HEAD_KEYS = ("box_predictor", "classification_head", "regression_head")
+
+
+def _is_head_param(name: str) -> bool:
+    return any(k in name for k in _HEAD_KEYS)
 
 
 def train_one_epoch(model, optimizer, data_loader, device, max_grad_norm=1.0):
@@ -82,14 +91,20 @@ def train_torchvision(
 
     train_cfg = config["training"]
 
-    num_classes = len(train_coco["categories"]) + 1
+    # train/val이 동일한 category_id→라벨 매핑을 쓰도록 train 기준으로 생성
+    cat2label = build_cat2label(train_coco)
+    num_classes = len(cat2label) + 1  # 배경 포함
 
     model = build_model(config, num_classes)
     model = model.to(device)
 
     img_size = config.get("data", {}).get("img_size")
-    train_ds = PillDetectionDataset(train_coco, augment=get_train_augment(img_size))
-    val_ds = PillDetectionDataset(val_coco, augment=get_val_augment(img_size))
+    train_ds = PillDetectionDataset(
+        train_coco, augment=get_train_augment(img_size), cat2label=cat2label
+    )
+    val_ds = PillDetectionDataset(
+        val_coco, augment=get_val_augment(img_size), cat2label=cat2label
+    )
 
     use_pin_memory = device.type == "cuda"
 
@@ -119,11 +134,11 @@ def train_torchvision(
     # 새로 초기화된 헤드에는 backbone보다 높은 LR 적용
     head_params = [
         p for n, p in model.named_parameters()
-        if p.requires_grad and "box_predictor" in n
+        if p.requires_grad and _is_head_param(n)
     ]
     backbone_params = [
         p for n, p in model.named_parameters()
-        if p.requires_grad and "box_predictor" not in n
+        if p.requires_grad and not _is_head_param(n)
     ]
     param_groups = [
         {"params": backbone_params, "lr": lr},
@@ -176,9 +191,9 @@ def train_torchvision(
     freeze_epochs = train_cfg.get("freeze_backbone_epochs", 0)
     if freeze_epochs > 0:
         for name, p in model.named_parameters():
-            if "box_predictor" not in name:
+            if not _is_head_param(name):
                 p.requires_grad_(False)
-        print(f"Backbone frozen for first {freeze_epochs} epochs (box_predictor only)")
+        print(f"Backbone frozen for first {freeze_epochs} epochs (detection head only)")
 
     best_map = 0.0
     history = []

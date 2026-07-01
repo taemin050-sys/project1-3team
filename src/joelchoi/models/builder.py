@@ -58,12 +58,26 @@ def build_model(config: dict, num_classes: int) -> nn.Module:
         _replace_ssd_head(model, num_classes)
 
     elif name == "retinanet_resnet50":
-        weights = "DEFAULT" if pretrained else None
-        model = retinanet_resnet50_fpn_v2(weights=weights, num_classes=num_classes)
+        # weights="DEFAULT"와 num_classes를 함께 넘기면 torchvision이 에러.
+        # ImageNet 백본(weights_backbone)만 불러오고 head는 num_classes로 새로 생성.
+        wb = "DEFAULT" if pretrained else None
+        size_kw = {}
+        img_size = config.get("data", {}).get("img_size")
+        if img_size:
+            size_kw = {"min_size": img_size, "max_size": img_size}
+        model = retinanet_resnet50_fpn_v2(
+            weights=None, weights_backbone=wb, num_classes=num_classes, **size_kw
+        )
 
     elif name == "fcos_resnet50":
-        weights = "DEFAULT" if pretrained else None
-        model = fcos_resnet50_fpn(weights=weights, num_classes=num_classes)
+        wb = "DEFAULT" if pretrained else None
+        size_kw = {}
+        img_size = config.get("data", {}).get("img_size")
+        if img_size:
+            size_kw = {"min_size": img_size, "max_size": img_size}
+        model = fcos_resnet50_fpn(
+            weights=None, weights_backbone=wb, num_classes=num_classes, **size_kw
+        )
 
     else:
         raise ValueError(
