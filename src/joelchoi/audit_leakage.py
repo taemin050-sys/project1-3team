@@ -64,9 +64,12 @@ def _rmse(a: list[float], b: list[float]) -> float:
     return (sum((x - y) ** 2 for x, y in zip(a, b)) / len(a)) ** 0.5
 
 
-def _collect_train_images(combos: list[int]) -> list[Path]:
-    """Kaggle train_images + AIHub 사용 조합 이미지 경로 수집."""
-    paths = list((KAGGLE_DATA / "train_images").glob("*.png"))
+def _collect_train_images(combos: list[int], include_vs: bool = False) -> list[Path]:
+    """Kaggle train_images + AIHub 사용 조합 이미지(+옵션 VS) 경로 수집."""
+    paths = [
+        p for p in (KAGGLE_DATA / "train_images").glob("*.png")
+        if "_index" not in p.name
+    ]
 
     try:
         from src.joelchoi.data.aihub_converter import (
@@ -82,7 +85,17 @@ def _collect_train_images(combos: list[int]) -> list[Path]:
         for c in combos:
             d = image_dirs.get(c)
             if d:
-                paths.extend(d.rglob("*.png"))
+                paths.extend(p for p in d.rglob("*.png") if "_index" not in p.name)
+
+        # AIHub 공식 Validation(VS) — 테스트가 여기서 파생됐는지 확인용
+        if include_vs:
+            vs_root = root.parent / "2.Validation" / "원천데이터" / "경구약제조합 5000종"
+            if vs_root.exists():
+                paths.extend(
+                    p for p in vs_root.rglob("*.png") if "_index" not in p.name
+                )
+            else:
+                print(f"[경고] VS 경로 없음: {vs_root}")
     except Exception as e:
         print(f"[경고] AIHub 이미지 수집 생략: {e}")
     return paths
@@ -93,6 +106,7 @@ def audit(
     hash_size: int = 16,
     hash_cutoff: int = 12,
     rmse_cutoff: float = 0.06,
+    include_vs: bool = False,
 ) -> dict:
     """정밀 2단계 leakage 감사.
 
@@ -108,8 +122,10 @@ def audit(
     print("구조 확인: 조합2 사용?", "예 (문제!)" if 2 in combos else "아니오 (정상)")
 
     test_paths = sorted((KAGGLE_DATA / "test_images").glob("*.png"))
-    train_paths = _collect_train_images(combos)
+    train_paths = _collect_train_images(combos, include_vs=include_vs)
     print(f"테스트 {len(test_paths)}장, 학습 후보 {len(train_paths)}장 해싱 중...")
+    if include_vs:
+        print("※ VS(AIHub 공식 Validation) 포함 대조 — 테스트가 VS 파생인지 확인")
 
     # 1) 정확 픽셀 해시 + 256-bit 지각해시
     train_px: dict[str, Path] = {}
@@ -165,22 +181,26 @@ def audit(
     for b in sorted(hist):
         print(f"   {b:2d}-{b + 3:2d} bit: {hist[b]:4d}장")
 
-    # 출처 분류: Kaggle 제공 train vs 우리가 추가한 AIHub
+    # 출처 분류: Kaggle train / AIHub TS(우리증강) / VS(공식 Validation)
     def _source(p: Path) -> str:
         s = str(p)
+        if "/2.Validation/" in s or "VS_" in s:
+            return "VS"
         if "/train_images/" in s or "train_images" in Path(s).parts:
             return "kaggle"
         return "aihub"
 
     n_kaggle = sum(1 for _, s, _, _ in near_dups if _source(s) == "kaggle")
-    n_aihub = len(near_dups) - n_kaggle
+    n_aihub = sum(1 for _, s, _, _ in near_dups if _source(s) == "aihub")
+    n_vs = sum(1 for _, s, _, _ in near_dups if _source(s) == "VS")
 
     print(
         f"\n해시근접(≤{hash_cutoff}) 후보 {len(candidates)}장 중 "
         f"RMSE≤{rmse_cutoff}(사실상 동일 사진): {len(near_dups)}장"
     )
     print(
-        f"   └ 출처별: Kaggle 제공 train {n_kaggle}장, 우리가 추가한 AIHub {n_aihub}장"
+        f"   └ 출처별: Kaggle train {n_kaggle}, AIHub TS(우리증강) {n_aihub}, "
+        f"VS(공식 Validation) {n_vs}"
     )
     for t, s, hd, r in sorted(near_dups, key=lambda x: x[3])[:12]:
         print(
@@ -188,19 +208,19 @@ def audit(
         )
 
     print("\n해석:")
-    print(
-        "  · Kaggle 출처 근접 = 대회 제공 train/test 내재적 중복 → baseline에도 포함, 우리 책임 아님"
-    )
-    print(
-        "  · AIHub 출처 근접 = 우리 증강이 테스트 근접 이미지를 넣은 경우 → 이것만이 실제 우려"
-    )
+    print("  · Kaggle 근접 = 대회 제공 train/test 내재적 중복 → baseline에도 포함")
+    print("  · AIHub TS 근접 = 우리 증강이 넣은 테스트 근접 이미지")
+    print("  · VS 근접 = 테스트가 VS 파생이라는 신호 → VS를 train/val로 쓰면 컨닝!")
 
-    if n_aihub > 0:
+    if n_vs > 0:
         verdict = (
-            f"검토 — AIHub 증강발 근접 {n_aihub}장(우리가 넣음). 해당 조합 제외 검토"
+            f"위험(VS 사용 금지) — 테스트가 VS와 {n_vs}장 겹침. "
+            "VS를 train/val로 쓰면 실제 컨닝."
         )
+    elif n_aihub > 0:
+        verdict = f"검토 — AIHub TS 증강발 근접 {n_aihub}장. 해당 조합 제외 고려"
     elif near_dups:
-        verdict = f"OK(우리 증강은 clean) — 근접 {len(near_dups)}장 전부 Kaggle 제공 데이터 내재 중복"
+        verdict = f"OK — 근접 {len(near_dups)}장 전부 Kaggle 제공 데이터 내재 중복"
     else:
         verdict = "OK — 동일 사진 없음"
     print(f"\n판정: {verdict}")
@@ -209,6 +229,7 @@ def audit(
         "near_dups": near_dups,
         "n_near_kaggle": n_kaggle,
         "n_near_aihub": n_aihub,
+        "n_near_vs": n_vs,
         "hist": hist,
         "n_test": len(test_paths),
         "n_train": len(train_paths),
@@ -222,10 +243,16 @@ if __name__ == "__main__":
     ap.add_argument("--hash-size", type=int, default=16)
     ap.add_argument("--hash-cutoff", type=int, default=12)
     ap.add_argument("--rmse-cutoff", type=float, default=0.06)
+    ap.add_argument(
+        "--check-vs",
+        action="store_true",
+        help="AIHub 공식 Validation(VS)을 대조에 포함 — 테스트가 VS 파생인지 확인",
+    )
     a = ap.parse_args()
     audit(
         combos=a.combos,
         hash_size=a.hash_size,
         hash_cutoff=a.hash_cutoff,
         rmse_cutoff=a.rmse_cutoff,
+        include_vs=a.check_vs,
     )
