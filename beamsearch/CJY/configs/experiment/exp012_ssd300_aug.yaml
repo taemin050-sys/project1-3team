@@ -1,0 +1,24 @@
+experiment:
+  name: exp012_ssd300_aug
+  seed: 42
+
+data:
+  source: kaggle+aihub   # exp011과 동일 데이터: Kaggle train(56) + AIHub 조합[1,3]
+  aihub_combos: [1, 3]
+  subset: full
+  test_size: 0.2
+  img_size: 300           # ssd300_vgg16은 입력 크기가 300으로 아키텍처에 고정됨
+
+model:
+  type: torchvision
+  name: ssd300
+  pretrained: true
+
+training:
+  epochs: 30   # exp011~017 모델 비교 공정성을 위해 전부 동일 epoch으로 통일
+  batch_size: 8
+  optimizer: SGD
+  lr: 0.005
+  weight_decay: 0.0005
+  momentum: 0.9
+  scheduler: cosine

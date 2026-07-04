@@ -1,0 +1,55 @@
+{
+  "best_map50_95": 0.0,
+  "final_map50": 0.0,
+  "final_map75": 0.0,
+  "final_map50_95": 0.0,
+  "epochs": 5,
+  "model": "fasterrcnn_resnet50",
+  "history": [
+    {
+      "map50": 0.0,
+      "map75": 0.0,
+      "map50_95": 0.0,
+      "epoch": 1,
+      "train_loss": NaN,
+      "lr": 0.0045225424859373685,
+      "time": 38.6
+    },
+    {
+      "map50": 0.0,
+      "map75": 0.0,
+      "map50_95": 0.0,
+      "epoch": 2,
+      "train_loss": NaN,
+      "lr": 0.0032725424859373683,
+      "time": 26.2
+    },
+    {
+      "map50": 0.0,
+      "map75": 0.0,
+      "map50_95": 0.0,
+      "epoch": 3,
+      "train_loss": NaN,
+      "lr": 0.0017274575140626314,
+      "time": 26.2
+    },
+    {
+      "map50": 0.0,
+      "map75": 0.0,
+      "map50_95": 0.0,
+      "epoch": 4,
+      "train_loss": NaN,
+      "lr": 0.0004774575140626316,
+      "time": 26.2
+    },
+    {
+      "map50": 0.0,
+      "map75": 0.0,
+      "map50_95": 0.0,
+      "epoch": 5,
+      "train_loss": NaN,
+      "lr": 0.0,
+      "time": 26.3
+    }
+  ]
+}
