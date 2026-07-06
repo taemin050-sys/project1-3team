@@ -1,0 +1,72 @@
+[
+  {
+    "model": "YOLO11n",
+    "params_M": 2.6,
+    "mAP_75_95": 0.686,
+    "ap75": 0.71,
+    "epochs": 50,
+    "imgsz": 640,
+    "note": "E1 reference",
+    "device": "mps"
+  },
+  {
+    "model": "YOLO26n",
+    "params_M": 2.5,
+    "mAP_75_95": 0.4795,
+    "ap75": 0.4994,
+    "epochs": 50,
+    "imgsz": 640,
+    "val_det": 1020,
+    "device": "mps"
+  },
+  {
+    "model": "FasterRCNN-R50",
+    "params_M": 41.6,
+    "mAP_75_95": 0.0,
+    "ap75": 0.0,
+    "epochs": 20,
+    "imgsz": "512(min)",
+    "val_det": 0,
+    "device": "mps"
+  },
+  {
+    "model": "RetinaNet-R50",
+    "params_M": 33.3,
+    "mAP_75_95": 0.575,
+    "ap75": 0.579,
+    "epochs": 20,
+    "imgsz": "512(min)",
+    "val_det": 5955,
+    "device": "mps"
+  },
+  {
+    "model": "FCOS-R50",
+    "params_M": 32.2,
+    "mAP_75_95": 0.186,
+    "ap75": 0.1975,
+    "epochs": 20,
+    "imgsz": "512(min)",
+    "val_det": 5100,
+    "device": "mps"
+  },
+  {
+    "model": "RT-DETR-l",
+    "params_M": 32.9,
+    "mAP_75_95": 0.737,
+    "ap75": 0.7548,
+    "epochs": 50,
+    "imgsz": 640,
+    "val_det": 1020,
+    "device": "cuda"
+  },
+  {
+    "model": "FasterRCNN-R50(warmup)",
+    "params_M": 41.6,
+    "mAP_75_95": 0.6553,
+    "ap75": 0.7357,
+    "epochs": 24,
+    "imgsz": "512+warmup",
+    "val_det": 387,
+    "device": "cuda"
+  }
+]
