@@ -1,0 +1,22 @@
+experiment:
+  name: exp002_ssd300_tiny
+  seed: 42
+
+data:
+  subset: tiny
+  test_size: 0.2
+  img_size: 300
+
+model:
+  type: torchvision
+  name: ssd300
+  pretrained: true
+
+training:
+  epochs: 20
+  batch_size: 8
+  optimizer: SGD
+  lr: 0.005
+  weight_decay: 0.0005
+  momentum: 0.9
+  scheduler: cosine

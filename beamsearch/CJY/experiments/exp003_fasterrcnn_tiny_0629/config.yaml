@@ -1,0 +1,19 @@
+data:
+  img_size: 640
+  subset: tiny
+  test_size: 0.2
+experiment:
+  name: exp003_fasterrcnn_tiny
+  seed: 42
+model:
+  name: fasterrcnn_resnet50
+  pretrained: true
+  type: torchvision
+training:
+  batch_size: 4
+  epochs: 20
+  lr: 0.005
+  momentum: 0.9
+  optimizer: SGD
+  scheduler: cosine
+  weight_decay: 0.0005

@@ -1,0 +1,24 @@
+data:
+  aihub_combos:
+  - 1
+  - 3
+  img_size: 640
+  source: kaggle+aihub
+  subset: full
+  test_size: 0.2
+experiment:
+  name: exp017_rfdetr_aug
+  seed: 42
+model:
+  checkpoint: Roboflow/rf-detr-base
+  name: rf_detr
+  pretrained: true
+  type: huggingface
+training:
+  accumulate_grad_batches: 2
+  batch_size: 4
+  epochs: 30
+  lr: 0.0001
+  optimizer: AdamW
+  resume: true
+  weight_decay: 0.0001

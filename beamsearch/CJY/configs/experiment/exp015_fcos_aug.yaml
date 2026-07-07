@@ -1,0 +1,33 @@
+experiment:
+  name: exp015_fcos_aug
+  seed: 42
+
+data:
+  source: kaggle+aihub   # exp011과 동일 데이터: Kaggle train(56) + AIHub 조합[1,3]
+  aihub_combos: [1, 3]
+  subset: full
+  test_size: 0.2
+  # FCOS는 원래 tiny(100장/batch4/640px)에서도 메모리가 간당간당했음.
+  # 전체 데이터 전환으로 클래스 수가 56 -> 91로 늘어(exp011 class_map 기준)
+  # 조밀예측 헤드(classification head) 크기가 커진 만큼 여유가 더 필요해
+  # 해상도를 640 -> 512로 낮춤(다른 모델과 완전히 동일 해상도는 아니지만,
+  # FPN 특징맵 크기가 (512/640)^2 ≈ 64%로 줄어 메모리 절감 효과가 큼).
+  img_size: 512
+
+model:
+  type: torchvision
+  name: fcos_resnet50
+  pretrained: true
+
+training:
+  epochs: 30            # exp011~017 모델 비교 공정성을 위해 전부 동일 epoch으로 통일
+  batch_size: 2         # 4 -> 2: 클래스 수 증가 + 전체 데이터 전환으로 물리 배치 축소
+  accumulate_grad_batches: 2   # 물리배치 2 x 누적 2 = 유효배치 4 (기존 설정과 동일하게 보존)
+  optimizer: SGD
+  lr: 0.005
+  weight_decay: 0.0005
+  momentum: 0.9
+  scheduler: cosine
+  freeze_backbone_epochs: 3    # 초반 메모리/그래디언트 불안정 완화
+  unfreeze_backbone_lr: 1.0e-4
+  resume: true
