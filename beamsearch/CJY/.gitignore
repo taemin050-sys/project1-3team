@@ -1,5 +1,4 @@
 data
-docs
 *.jpg
 *.png
 report/
@@ -13,4 +12,8 @@ report/
 # *0629*/
 draft*.ipynb
 test*.ipynb
-*.csvbeamsearch/CJY/src/deploy/medication_detect/
+*.csv
+beamsearch/CJY/src/deploy/medication_detect/
+r0*
+r1*
+synth*
