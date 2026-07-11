@@ -1,0 +1,16 @@
+data
+docs
+*.jpg
+*.png
+report/
+
+# exp002*/
+# exp003*/
+# exp002*.*
+# exp003*.*
+# exp004*.*
+# exp005*.*
+# *0629*/
+draft*.ipynb
+test*.ipynb
+*.csvbeamsearch/CJY/src/deploy/medication_detect/

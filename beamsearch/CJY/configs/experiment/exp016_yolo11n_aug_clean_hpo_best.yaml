@@ -1,0 +1,26 @@
+data:
+  aihub_combos:
+  - 1
+  - 3
+  - 4
+  - 5
+  - 6
+  img_size: 640
+  leakage_safe_grouping: true
+  source: kaggle+aihub
+  subset: full
+  test_size: 0.2
+experiment:
+  name: exp016_yolo11n_aug_clean_hpo_best
+  seed: 42
+model:
+  name: yolo11n
+  pretrained: true
+  type: yolo
+training:
+  batch_size: 8
+  epochs: 60
+  lr: 0.003971084710792475
+  optimizer: AdamW
+  resume: false
+  weight_decay: 1.3783237455007187e-05

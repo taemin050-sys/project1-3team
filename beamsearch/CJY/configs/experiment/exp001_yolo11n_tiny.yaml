@@ -1,0 +1,20 @@
+experiment:
+  name: exp001_yolo11n_tiny
+  seed: 42
+
+data:
+  subset: tiny
+  test_size: 0.2
+  img_size: 640
+
+model:
+  type: yolo
+  name: yolo11n
+  pretrained: true
+
+training:
+  epochs: 20
+  batch_size: 16
+  optimizer: SGD
+  lr: 0.01
+  weight_decay: 0.0005

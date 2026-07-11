@@ -97,3 +97,85 @@ OneDrive/
 *.vsix
 extensions/
 .vscode-server/
+# =========================================================
+#  .gitignore — 헬스잇 경구약제 객체 검출 (3팀)
+# =========================================================
+
+# --- 데이터: 원본 미커밋 (docs/04). processed의 SSOT json은 커밋 허용 ---
+team/data/raw/
+team/data/processed/*.png
+team/data/processed/*.jpg
+team/data/processed/*.jpeg
+team/data/processed/*.npy
+team/data/processed/*.pkl
+team/data/processed/*.pt
+# 커밋 허용: data/processed/*.json (SSOT — drug_master.json, class_map.json)
+
+# --- 모델 가중치 / 학습 산출물 ---
+*.pt
+*.pth
+*.onnx
+*.engine
+runs/
+wandb/
+lightning_logs/
+
+# --- 출력물 (구조는 유지, 대용량 산출물 미커밋) ---
+team/outputs/*
+!team/outputs/.gitkeep
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- 가상환경 ---
+.venv/
+venv/
+env/
+.conda/
+myenv/
+
+# --- 시크릿 / 환경 변수 ---
+.env
+.env.*
+*.key
+secrets/
+
+# --- 개인 도구·에디터 설정 (팀원 각자 자유, 레포에 커밋하지 않음) ---
+# 코드 에디터·AI 보조 도구 등 개인 로컬 설정은 공식 레포에 포함하지 않습니다.
+.vscode/
+.idea/
+.cursor/
+.aider*
+.continue/
+.codeium/
+CLAUDE.md
+GEMINI.md
+AGENTS.md
+.claude/
+.gemini/
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+*.swp
+
+# # 데이터
+team/data/
+
+# uv로 생성한 디렉토리
+.venv/
+.python-version
+uv.lock
+
+
+pyproject.toml

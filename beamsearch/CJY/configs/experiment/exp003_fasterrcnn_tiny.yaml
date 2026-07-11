@@ -1,0 +1,25 @@
+experiment:
+  name: exp003_fasterrcnn_tiny
+  seed: 42
+
+data:
+  subset: medium
+  test_size: 0.2
+  img_size: 512
+
+model:
+  type: torchvision
+  name: fasterrcnn_resnet50
+  pretrained: true
+
+training:
+  epochs: 20
+  batch_size: 2
+  optimizer: SGD
+  lr: 0.005
+  weight_decay: 0.0005
+  momentum: 0.9
+  scheduler: cosine
+  warmup_epochs: 3
+  freeze_backbone_epochs: 20  # small 데이터셋(400장/92클래스)에서 unfreeze는 RPN 폭발 + overfitting
+  unfreeze_backbone_lr: 1.0e-4
