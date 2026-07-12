@@ -28,3 +28,11 @@
 - MFDS 수집 이미지 25,326장: `/Volumes/SSD 4T/mfds-pill-image-collector/data/images/`
 - 프리즈 벤치마크·도메인랜덤 검출기 데이터: Codex autolabel `outputs/`(Mac Studio 로컬)
 - Codex 레포: `github.com/exobiz7/{health-eat-pill-autolabeling, mfds-pill-image-collector}` + `aihub-image-preprocessing`(로컬)
+
+## 7. 재현 입력 — 데이터 원본 · 체크포인트 (무거워 미커밋)
+- **AI Hub 경구약제 원본**: 조합 5000종(`사용 허가 조합` / 금지 `TS_2·TL_2`는 배제) · 단일 5000종 — 외장 USB/SSD, AI Hub 다운로드(aihubshell). *상업 재배포 조건 확인 필요.*
+- **대회 기본 데이터**: `01_data/01_sprint_ai_project1_data/{train_images,train_annotations,test_images}` (388M·3M·1.4G)
+- **학습 산출 체크포인트**: `runs/final/*/weights/{best,last}.pt` · `runs/kfold/*/weights/best.pt` (머신 로컬, 대용량)
+- **파생 데이터셋**: `processed/{kaggle_aihub_cover116, kaggle_aihub_full_inpaint, kaggle_sam2_synth_v2_kaggle_696}` (수백MB~2.7G)
+
+> 팀원 재현 시: 이 원본·가중치를 Drive에서 받아 `src/config.json`의 `roots`에 경로 등록 → `src/README.md` 재현 순서 실행.

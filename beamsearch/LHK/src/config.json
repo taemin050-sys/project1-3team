@@ -1,0 +1,14 @@
+{
+  "description": "HealthEat 경구약제 객체검출 (코드잇 3팀) — 멀티머신 실험 조율. 코드는 팀 repo beamsearch/LHK, 결과는 여기(lab-kit) 버스로.",
+  "roots": {
+    "data_root": [
+      "/Volumes/SSD 4T/01_sprint_ai_project1_data",
+      "/Users/macbook/dev/learning/codeit/01_Proj_HealthEat_cla/01_data/01_sprint_ai_project1_data"
+    ],
+    "processed": [
+      "/Volumes/SSD 4T/01_sprint_ai_project1_data/processed",
+      "/Users/macbook/dev/learning/codeit/01_Proj_HealthEat_cla/01_data/processed"
+    ]
+  },
+  "_note": "data_root = train_images/train_annotations/test_images 상위. processed = synth 데이터셋(kaggle_sam2_synth_*). 새 머신은 맨 앞에 경로 추가."
+}
