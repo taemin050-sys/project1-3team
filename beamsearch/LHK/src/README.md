@@ -28,7 +28,9 @@
 | | `error_analysis.py` | 오류분석(혼동·클래스별 AP·오류 컨택트시트) |
 | **최종 학습·제출** | `final_submission.py` | ★전량 학습→test842 예측→제출 CSV(EXP_* env로 모델·데이터 선택) |
 | **앙상블** | `wbf_ensemble.py` | ★WBF 앙상블(submit/eval/foldpred) |
-| **RT-DETR** | `build_rtdetr_final_bundle.py`·`build_rtdetr_nb_cover.py`·`build_rtdetr_nb_final.py` | Colab 번들·재개형 노트북 생성 |
+| **RT-DETR (Colab)** | **`rtdetr_cover_colab.ipynb`** | ★커버리지118 클린 RT-DETR 학습→test 예측(Drive 체크포인트·중단시 자동 resume). 앙상블 0.9994 재료 |
+| | `rtdetr_final_colab.ipynb` | 초기 최종 RT-DETR(56/dirty118) |
+| | `build_rtdetr_final_bundle.py`·`build_rtdetr_nb_cover.py`·`build_rtdetr_nb_final.py` | 위 노트북·Colab 번들 생성기(재현용) |
 | **시각화** | `make_class_catalog.py`·`make_cover_catalog.py`·`make_audit_diagram.py`·`make_scrum_grid*.py` | 클래스 카탈로그·감사 다이어그램·의심 그리드 |
 | **인프라** | `paths.py`·`labkit.py`·`config.json`·`run.sh` | 멀티머신 경로 어댑터·git-버스·실행 래퍼 |
 
