@@ -10,7 +10,9 @@
 
 ---
 주요 보고서 및 협업일지 링크
-https://app.notion.com/p/1_3-38bb13f77dbd80789762f37a573d2c1e?source=copy_link
+- [3팀 노션](https://app.notion.com/p/1_3-38bb13f77dbd80789762f37a573d2c1e?source=copy_link)
+- [3팀 보고서 파일](https://github.com/taemin050-sys/project1-3team/blob/main/team/report/report-3-team.pdf)
+
 
 ## ★ 레포 구조 (정본 — 구조도는 이 문서 1곳에만)
 
