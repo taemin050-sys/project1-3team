@@ -47,7 +47,7 @@ repo/
 
 **3영역 원칙:** `shared`(처음부터 전원 공용 규칙) ↔ `beamsearch/<이니셜>`(개인 자유 탐색) ↔ `team`(승격물 + 공통 데이터). 공정성은 **같은 채점기·같은 금지 가드**를 `shared`로 공유해서 확보하고, 방식·구조·도구는 개인 영역에서 자유. 승격 워크플로우는 [docs/03 §2.4](./docs/03-execution-strategy.md).
 
----
+<!-- ---
 
 ## 🗺 코드 위치 맵
 
@@ -67,7 +67,7 @@ repo/
 | 추론 | `team.src.inference.predict` | `team/src/inference/predict.py` |
 | 웹 서비스 | — | `team/service/app.py` |
 
-> 설계 문서(docs/)의 `src/…` 표기는 **논리적 파이프라인 명칭**이며, 실제 위치·명령은 이 표가 정본.
+> 설계 문서(docs/)의 `src/…` 표기는 **논리적 파이프라인 명칭**이며, 실제 위치·명령은 이 표가 정본. -->
 
 ---
 
