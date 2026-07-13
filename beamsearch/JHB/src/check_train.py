@@ -8,7 +8,7 @@ current_script_dir = Path(__file__).resolve().parent
 
 project_root = current_script_dir.parent.parent.parent
 
-RAW_DATA_DIR = project_root / "team" / "data" / "raw" / "yolo_dataset_acai" / "final_split"
+RAW_DATA_DIR = project_root / "team" / "data" / "raw" / "acai_basic_data" / "yolo_dataset" / "final_split"
 
 json_path = str(RAW_DATA_DIR / "labels" / "train" / "train.json")  # 파일명 규칙에 맞춰 조립
 image_dir = str(RAW_DATA_DIR / "images" / "train")
