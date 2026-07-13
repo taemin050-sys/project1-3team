@@ -48,7 +48,8 @@
   | 스탬프툴 | 배경패치 복사+페더 | A+B(진짜 grain 보존) | 중 |
   | 배경 분산 기반 생성 | median + 지역 노이즈 std 매칭 | A(페더)+B | 중 |
 
-- [이미지: report_13_synth_backgrounds.png] 정품 배경 생성 · [이미지: report_12_synth_composite_result.png] 최종 합성 결과
+- **단계별 예시**: [이미지: report_12_aug_stage1_basic_crop.png] 1단계 기본크롭 초기실패 · [이미지: report_13_aug_stage2_grabcut.png] 2단계 Grabcut
+- **3단계 세부**: [이미지: report_14_aug_stage3_sam_cutout_audit.png] SAM 컷아웃 감사 · [이미지: report_15_aug_stage3_sam_cutout_assets.png] 컷아웃 자산 · [이미지: report_16_aug_stage3_bg_patches.png] 배경패치 · [이미지: report_17_aug_stage3_bg_generated.png] 배경생성 · [이미지: report_18_aug_stage3_composite.png] 최종 합성
 - 화자노트: 단일 알약을 (1) 도메인으로 정규화 후 조합 합성(train 전용) — 반투명 캡슐이 SAM 하이브리드의 이유.
 
 ## S7. 평가 신뢰도 — 3대 함정 (핵심 스토리)
