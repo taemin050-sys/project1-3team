@@ -79,7 +79,7 @@ repo/
 - **워크플로우:** 로컬에서 데이터·전처리·스모크까지 → push → **Runpod에서 GPU 학습** → 결과 push → Runpod 종료. (학습 외는 로컬, GPU 학습만 Runpod)
 
 ---
-
+<!-- 
 ## ⚙️ 재현 절차 (개요)
 
 ```bash
@@ -95,7 +95,7 @@ make eval        # shared.eval.local_map (mAP@[0.75:0.95])
 
 > 데이터 보강: `make crosswalk`·`make augment`·`make autolabel` (docs/07·08). 웹 데모: `make serve`. 실제 인자는 `Makefile` 참조.
 
----
+--- -->
 
 ## 📦 데이터 · 증강 · 오토라벨링
 
