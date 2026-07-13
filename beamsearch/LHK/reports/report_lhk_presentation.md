@@ -154,6 +154,15 @@
 - 게이트: 런타임4/4·프리즈벤치·dirty-label(우리 핸드오프 481제외)·도메인랜덤 10,000장·30,135박스
 - 화자노트: 우리 모델링과 나란히, 상용 25k 커버리지의 데이터 토대.
 
+## S13b. 오토라벨링 V2 — 프로덕션 파이프라인 (⚠️ 진행 중·중간보고)
+- **목표**: MFDS 25,326장 사람 라벨 0 자동라벨 — 단 abstention+독립합의+캘리브레이션 승격+롤백으로 품질
+- **V1→V2 보정**: 외부모델 실추론 worker화 · 검출 taxonomy 25,344ID→**단일 pill** · coverage≠accuracy→캘리브 게이트
+- **티어**: Bronze(기본) → AutoSilver(합의 게이트 통과 시 학습) → Gold(사람리뷰) · 현재 **AutoSilver=0 정상**(fail-closed)
+- [이미지: report_19_mfds_autolabel_consensus.png] MFDS robust 합의 감사시트 · [이미지: report_20_autolabel_domain_randomized.png] 도메인 shortcut 교정 재합성
+- **핵심 발견**: 템플릿 드리프트 라우팅(grid 72%/close-up 14%) · dirty-label 직접감사(10,489→10,008) · 도메인 shortcut(씬당 1알→24,114 SAM2 자산 밝은배경 10,000씬 재합성)
+- **다음 하드 게이트**: 외부모델 2패밀리 → MFDS 캘리브 벤치 → AutoSilver 하한 통과. 그 전까진 **Bronze 제안**
+- 화자노트: 아직 미완성 트랙 — 상용 B 검출 토대, 정직하게 '검증 전 제안'으로 표기.
+
 ## S14. 118 클래스 카탈로그
 - [이미지: report_02_class_catalog_118.jpg]
 - 커버리지 학습 클래스 118종(id · K-code · 제품명)
