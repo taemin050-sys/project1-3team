@@ -84,7 +84,7 @@ ehthumbs_vista.db
 OneDrive/
 바탕 화면/
 *초급프로젝트 데이터*/
-*json/
+
 # =========================
 # 9. 프로젝트 관련 문서 및 기타 폴더 차단
 # =========================
@@ -168,9 +168,6 @@ AGENTS.md
 .DS_Store
 Thumbs.db
 *.swp
-
-# # 데이터
-team/data/
 
 # uv로 생성한 디렉토리
 .venv/
