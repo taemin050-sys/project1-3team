@@ -1,0 +1,23 @@
+# LHK lab — 공유 버스: 스크립트·결과(json/jsonl/md/csv)만. 무거운 것은 로컬 유지.
+# weights / 모델
+*.pt
+runs/**/weights/
+# 이미지·아카이브 (컨택트시트·오버레이·합성 등 — 무거움, 로컬만)
+*.png
+*.jpg
+*.jpeg
+*.tar
+*.zip
+# 로그 / 캐시 / 전처리 산출물(재생성 가능)
+*.log
+runs/logs/
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store
+data/yolo/
+data/yolo_aug*/
+data/kfold_work/
+data/gt_corrected/review/
+# 공유하는 것: scripts/*.py, lab/results/*.jsonl, lab/summary.json,
+#   data/gt_corrected/corrected_coco.json, *.md, ASSIGNMENTS/RUNBOOK/PROGRESS
+# (주의: 루트 .gitignore가 runs/ 전체를 무시 → 공유 산출물은 lab/ 에 둔다. runs/ 는 로컬 전용.)

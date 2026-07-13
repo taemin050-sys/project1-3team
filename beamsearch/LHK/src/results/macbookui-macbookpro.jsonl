@@ -1,0 +1,35 @@
+{"variant": "base", "fold": 0, "mAP_75_95": 0.6926, "n_train_real": 181, "n_synth": 0, "n_val": 51, "machine": "macbookui-macbookpro"}
+{"variant": "s696", "fold": 0, "mAP_75_95": 0.9103, "n_train_real": 181, "n_synth": 696, "n_val": 51, "machine": "macbookui-macbookpro"}
+{"variant": "s696_1500nat", "fold": 0, "mAP_75_95": 0.8829, "n_train_real": 181, "n_synth": 2196, "n_val": 51, "machine": "macbookui-macbookpro"}
+{"variant": "s696_2500bal", "fold": 0, "mAP_75_95": 0.911, "n_train_real": 181, "n_synth": 3196, "n_val": 51, "machine": "macbookui-macbookpro"}
+{"variant": "base", "fold": 1, "mAP_75_95": 0.707, "n_train_real": 185, "n_synth": 0, "n_val": 47, "machine": "macbookui-macbookpro"}
+{"variant": "s696", "fold": 1, "mAP_75_95": 0.8843, "n_train_real": 185, "n_synth": 696, "n_val": 47, "machine": "macbookui-macbookpro"}
+{"variant": "s696_1500nat", "fold": 1, "mAP_75_95": 0.8727, "n_train_real": 185, "n_synth": 2196, "n_val": 47, "machine": "macbookui-macbookpro"}
+{"variant": "s696_2500bal", "fold": 1, "mAP_75_95": 0.8746, "n_train_real": 185, "n_synth": 3196, "n_val": 47, "machine": "macbookui-macbookpro"}
+{"variant": "base", "fold": 2, "mAP_75_95": 0.7786, "n_train_real": 184, "n_synth": 0, "n_val": 48, "machine": "macbookui-macbookpro"}
+{"variant": "s696", "fold": 2, "mAP_75_95": 0.9215, "n_train_real": 184, "n_synth": 696, "n_val": 48, "machine": "macbookui-macbookpro"}
+{"variant": "s696_1500nat", "fold": 2, "mAP_75_95": 0.9327, "n_train_real": 184, "n_synth": 2196, "n_val": 48, "machine": "macbookui-macbookpro"}
+{"variant": "s696_2500bal", "fold": 2, "mAP_75_95": 0.9406, "n_train_real": 184, "n_synth": 3196, "n_val": 48, "machine": "macbookui-macbookpro"}
+{"variant": "s696_r960", "fold": 0, "mAP_75_95": 0.9318, "n_train_real": 181, "n_synth": 696, "n_val": 51, "imgsz": 960, "machine": "macbookui-macbookpro"}
+{"variant": "s696_r960", "fold": 1, "mAP_75_95": 0.8543, "n_train_real": 185, "n_synth": 696, "n_val": 47, "imgsz": 960, "machine": "macbookui-macbookpro"}
+{"variant": "s696_r960", "fold": 2, "mAP_75_95": 0.9359, "n_train_real": 184, "n_synth": 696, "n_val": 48, "imgsz": 960, "machine": "macbookui-macbookpro"}
+{"variant": "s696_11s", "fold": 0, "mAP_75_95": 0.9561, "model": "yolo11s.pt", "imgsz": 640, "n_train_real": 181, "n_synth": 696, "n_val": 51, "machine": "macbookui-macbookpro"}
+{"variant": "s696_11s", "fold": 1, "mAP_75_95": 0.8839, "model": "yolo11s.pt", "imgsz": 640, "n_train_real": 185, "n_synth": 696, "n_val": 47, "machine": "macbookui-macbookpro"}
+{"variant": "s696_11s", "fold": 2, "mAP_75_95": 0.9512, "model": "yolo11s.pt", "imgsz": 640, "n_train_real": 184, "n_synth": 696, "n_val": 48, "machine": "macbookui-macbookpro"}
+{"variant": "s696_11s_r960", "fold": 0, "mAP_75_95": 0.9226, "model": "yolo11s.pt", "imgsz": 960, "n_train_real": 181, "n_synth": 696, "n_val": 51, "machine": "macbookui-macbookpro"}
+{"variant": "s696_11s_r960", "fold": 1, "mAP_75_95": 0.8797, "model": "yolo11s.pt", "imgsz": 960, "n_train_real": 185, "n_synth": 696, "n_val": 47, "machine": "macbookui-macbookpro"}
+{"variant": "s696_11s_r960", "fold": 2, "mAP_75_95": 0.935, "model": "yolo11s.pt", "imgsz": 960, "n_train_real": 184, "n_synth": 696, "n_val": 48, "machine": "macbookui-macbookpro"}
+{"variant": "s696_11m", "fold": 0, "mAP_75_95": 0.9222, "model": "yolo11m.pt", "imgsz": 640, "epochs": 100, "n_train_real": 181, "n_synth": 696, "n_val": 51, "machine": "macbookui-macbookpro"}
+{"variant": "s696_11m", "fold": 1, "mAP_75_95": 0.8609, "model": "yolo11m.pt", "imgsz": 640, "epochs": 100, "n_train_real": 185, "n_synth": 696, "n_val": 47, "machine": "macbookui-macbookpro"}
+{"variant": "s696_11m", "fold": 2, "mAP_75_95": 0.9386, "model": "yolo11m.pt", "imgsz": 640, "epochs": 100, "n_train_real": 184, "n_synth": 696, "n_val": 48, "machine": "macbookui-macbookpro"}
+{"variant": "s696_rcSAFE_11s", "fold": 0, "mAP_75_95": 0.8827, "model": "yolo11s.pt", "imgsz": 640, "epochs": 50, "n_train_real": 181, "n_synth": 2196, "n_val": 51, "machine": "macbookui-macbookpro"}
+{"variant": "s696_rcSAFE_11s", "fold": 1, "mAP_75_95": 0.8452, "model": "yolo11s.pt", "imgsz": 640, "epochs": 50, "n_train_real": 185, "n_synth": 2196, "n_val": 47, "machine": "macbookui-macbookpro"}
+{"variant": "s696_rcSAFE_11s", "fold": 2, "mAP_75_95": 0.942, "model": "yolo11s.pt", "imgsz": 640, "epochs": 50, "n_train_real": 184, "n_synth": 2196, "n_val": 48, "machine": "macbookui-macbookpro"}
+{"variant": "s696_11s_augS", "fold": 0, "mAP_75_95": 0.8408, "model": "yolo11s.pt", "imgsz": 640, "epochs": 50, "n_train_real": 181, "n_synth": 696, "n_val": 51, "machine": "macbookui-macbookpro"}
+{"variant": "s696_11s_over40", "fold": 0, "mAP_75_95": 0.9311, "model": "yolo11s.pt", "imgsz": 640, "epochs": 50, "n_train_real": 896, "n_synth": 696, "n_val": 51, "machine": "macbookui-macbookpro"}
+{"variant": "s696_11s_over40only", "fold": 0, "mAP_75_95": 0.9058, "model": "yolo11s.pt", "imgsz": 640, "epochs": 50, "n_train_real": 896, "n_synth": 696, "n_val": 51, "machine": "macbookui-macbookpro"}
+{"variant": "s696_aihub_11s", "fold": 0, "mAP_75_95": 0.9771, "model": "yolo11s.pt", "imgsz": 640, "epochs": 50, "n_train_real": 181, "n_synth": 2795, "n_val": 51, "machine": "macbookui-macbookpro"}
+{"variant": "s696_aihubINP_11s", "fold": 0, "mAP_75_95": 0.9799, "model": "yolo11s.pt", "imgsz": 640, "epochs": 50, "n_train_real": 181, "n_synth": 2795, "n_val": 51, "machine": "macbookui-macbookpro"}
+{"variant": "s696_aihubFULL_11s", "fold": 0, "mAP_75_95": 0.9833, "model": "yolo11s.pt", "imgsz": 640, "epochs": 50, "n_train_real": 181, "n_synth": 8532, "n_val": 51, "machine": "macbookui-macbookpro"}
+{"variant": "clean_all_11s", "fold": 0, "mAP_75_95": 0.986, "model": "yolo11s.pt", "imgsz": 640, "epochs": 50, "n_train_real": 175, "n_synth": 8292, "n_val": 51, "n_excluded": 246, "machine": "macbookui-macbookpro"}
+{"variant": "clean_badbox_11s", "fold": 0, "mAP_75_95": 0.9753, "model": "yolo11s.pt", "imgsz": 640, "epochs": 50, "n_train_real": 175, "n_synth": 8371, "n_val": 51, "n_excluded": 167, "machine": "macbookui-macbookpro"}

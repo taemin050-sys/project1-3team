@@ -1,0 +1,9 @@
+{"variant": "s696_bg64_11s", "fold": 0, "mAP_75_95": 0.9518, "model": "yolo11s.pt", "imgsz": 640, "n_train_real": 181, "n_synth": 696, "n_val": 51, "machine": "macstudioui-macstudio"}
+{"variant": "s696_bg64_11s", "fold": 1, "mAP_75_95": 0.8426, "model": "yolo11s.pt", "imgsz": 640, "n_train_real": 185, "n_synth": 696, "n_val": 47, "machine": "macstudioui-macstudio"}
+{"variant": "s696_bg64_11s", "fold": 2, "mAP_75_95": 0.9299, "model": "yolo11s.pt", "imgsz": 640, "n_train_real": 184, "n_synth": 696, "n_val": 48, "machine": "macstudioui-macstudio"}
+{"variant": "s696_rc_11s", "fold": 0, "mAP_75_95": 0.9405, "model": "yolo11s.pt", "imgsz": 640, "n_train_real": 181, "n_synth": 1392, "n_val": 51, "machine": "macstudioui-macstudio"}
+{"variant": "s696_rc_11s", "fold": 1, "mAP_75_95": 0.955, "model": "yolo11s.pt", "imgsz": 640, "n_train_real": 185, "n_synth": 1392, "n_val": 47, "machine": "macstudioui-macstudio"}
+{"variant": "s696_rc_11s", "fold": 2, "mAP_75_95": 0.94, "model": "yolo11s.pt", "imgsz": 640, "n_train_real": 184, "n_synth": 1392, "n_val": 48, "machine": "macstudioui-macstudio"}
+{"variant": "s696_rc_11m", "fold": 0, "mAP_75_95": 0.9504, "model": "yolo11m.pt", "imgsz": 640, "n_train_real": 181, "n_synth": 1392, "n_val": 51, "machine": "macstudioui-macstudio"}
+{"variant": "s696_rc_11m", "fold": 1, "mAP_75_95": 0.9592, "model": "yolo11m.pt", "imgsz": 640, "n_train_real": 185, "n_synth": 1392, "n_val": 47, "machine": "macstudioui-macstudio"}
+{"variant": "s696_rc_11m", "fold": 2, "mAP_75_95": 0.9372, "model": "yolo11m.pt", "imgsz": 640, "n_train_real": 184, "n_synth": 1392, "n_val": 48, "machine": "macstudioui-macstudio"}
