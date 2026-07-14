@@ -9,14 +9,20 @@
 - **기간:** 2026-06-26 ~ 07-13 · 중간발표 07-07 · 최종발표 07-14
 
 ---
-주요 보고서 및 협업일지 링크
+## 주요 보고서 및 협업일지 링크
 - [3팀 노션](https://app.notion.com/p/1_3-38bb13f77dbd80789762f37a573d2c1e?source=copy_link)
+  - [협업일지 위치](https://app.notion.com/p/38fb13f77dbd8027b2efc9482f2655cc?source=copy_link)
+    - [이태민](https://app.notion.com/p/38bb13f77dbd804481dad1a25eed36f1?source=copy_link)
+    - [이형기](https://app.notion.com/p/39cb13f77dbd80e693b9cd9856a5e851?source=copy_link)
+    - [장한빈]()
+    - [최중열](https://app.notion.com/p/38bc4fa9026180b6834be509b0d11dde?source=copy_link)
+    - [홍우석](https://app.notion.com/p/38b6e864c1d88094b83cd0abf96b786e?source=copy_link)
 - [3팀 보고서 파일](https://github.com/taemin050-sys/project1-3team/blob/main/team/report/report-3-team.pdf)
 
 
 ## ★ 레포 구조 (정본 — 구조도는 이 문서 1곳에만)
 
-> 다른 문서는 구조를 **다시 그리지 않고** 이 절을 링크로 참조한다(드리프트 방지). 코드 실제 위치·실행 명령의 정본은 아래 **[코드 위치 맵](#-코드-위치-맵)**.
+<!-- > 다른 문서는 구조를 **다시 그리지 않고** 이 절을 링크로 참조한다(드리프트 방지). 코드 실제 위치·실행 명령의 정본은 아래 **[코드 위치 맵](#-코드-위치-맵)**. -->
 
 ```
 repo/
