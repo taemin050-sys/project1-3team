@@ -14,7 +14,7 @@
   - [협업일지 위치](https://app.notion.com/p/38fb13f77dbd8027b2efc9482f2655cc?source=copy_link)
     - [이태민](https://app.notion.com/p/38bb13f77dbd804481dad1a25eed36f1?source=copy_link)
     - [이형기](https://app.notion.com/p/39cb13f77dbd80e693b9cd9856a5e851?source=copy_link)
-    - [장한빈]()
+    - [장한빈](https://app.notion.com/p/39af4a2e0374804eb325ea5d6e5f0c0c?source=copy_link)
     - [최중열](https://app.notion.com/p/38bc4fa9026180b6834be509b0d11dde?source=copy_link)
     - [홍우석](https://app.notion.com/p/38b6e864c1d88094b83cd0abf96b786e?source=copy_link)
 - [3팀 보고서 파일](https://github.com/taemin050-sys/project1-3team/blob/main/team/report/report-3-team.pdf)
